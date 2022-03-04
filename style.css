@@ -1,0 +1,40 @@
+nav {
+    width: 100%;
+    display: flex;
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+    
+  h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .space {
+    
+  }
+  
+  button {
+    border: none;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: #0287a6;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 8px;
+    height: 24px;
+  }
