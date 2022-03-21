@@ -1,12 +1,43 @@
+# x = input("Enter a string: ")
+# y = x[::-1]
+# print("Reverse of " + x + " is: " + y)
+
+
+# Initialize array     
+# arr = [1, 2, 3, 4, 5];     
+# print("Original array: ");    
+# for i in range(0, len(arr)):    
+#     print(arr[i]),     
+# print("Array in reverse order: ");    
+# #Loop through the array in reverse order    
+# for i in range(len(arr)-1, -1, -1):     
+#     print(arr[i]),  
+
+
+str = "dog"
+print("Original string: ")
+for i in range(0, len(str)):
+    print(str[i]),
+print("String in reverse order: ")
+for i in range(len(str)-1, -1, -1):
+    print(str[i]),
+
+
 # def reverse_word(string):
 #     reversed_word = []
-#     for i in range(len(string) - 1, -1, -1):
+#     print("Original string: ")
+#     for i in range(0, len(string)):
+#         print(string[i]),
+#     print("String in reverse order: ")
+#     for i in range(len(string) -1, -1, -1):
 #         reversed_word += string[i]
-#         return ''.join(reversed_word)
+#         return ''.join(string)
 
-# input_word = input("Enter your word: ")
+# print(reverse_word("dogs"))
 
-# print(reverse_word(input_word))
+
+
+
 
 # def reverse_for_loop(s):
 #     s1 = ''
@@ -24,7 +55,7 @@
 # print("hi " + user_input)
 
 
-x = input("Enter a string: ")
+
 
 # counter = len(x)
 
@@ -32,8 +63,7 @@ x = input("Enter a string: ")
 #     print(x[::counter])
 #     counter =- 1
 
-y = x[::-1]
-print("Reverse of string is: " + y)
+
 
 
 # def reverse():
