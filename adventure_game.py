@@ -1,4 +1,5 @@
 import time
+import random
 
 def print_pause(message_to_print):
     print(message_to_print)
@@ -31,12 +32,17 @@ def choose_weapon():
         print_pause("Please save her!")
         return choice
 
+def random_monster():
+    monster = random.choice(["ogre", "beholder", "dragon"])
+    print_pause("You encounter a dangerous " + monster + " !")
+
 
 intro()
 while True:
 
     choose_weapon()
     print_pause("You receive your weapon, and follow Jambi's directions to rescue Princes Pinky.")
+    random_monster()
     play_again = valid_input("Would you like to play again? "
                               "Please say 'yes' or 'no'.\n",
                               "yes", "no")
