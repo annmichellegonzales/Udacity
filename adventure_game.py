@@ -23,8 +23,7 @@ def random_monster():
     monster = random.choice(["ogre", "beholder", "dragon"])
     print_pause("You encounter a dangerous " + monster + " !")
     if monster == "dragon":
-        print_pause("The red dragon menacingly "
-        "breathes fire in your direction.")
+        print_pause("The red dragon menacingly breathes fire in your direction.")
     if monster == "ogre":
         print_pause("The ogre bashes his club on the ground.")
     if monster == "beholder":
