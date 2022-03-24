@@ -23,14 +23,26 @@ def intro():
     print_pause("Jambi presents two weapons for you to choose. A shiny sword, or a plain looking mace.")
 
 def choose_weapon():
-    choice = input("Please enter 1 to choose the sword, or enter 2 to choose the mace.\n")
-    if choice == 1:
+    response = input("Please enter sword or mace.\n").lower()
+    if "sword" in response:
         print_pause("Excellent choice! This sword is imbued with the mystical properties of Lake Envalore!")
-    elif choice == 2:
+        # break
+    elif "mace" in response:
         print_pause("Although this is a fierce mace, it is not enchanted.")
+        # break
     else:
-        print_pause("Please save her!")
-        return choice
+        print_pause("'I only have these two weapons to choose from', says Jambi")
+        choose_weapon()
+
+# def choose_weapon():
+#     choice = input("Please enter 1 to choose the sword, or enter 2 to choose the mace.\n")
+#     if choice == 1:
+#         print_pause("Excellent choice! This sword is imbued with the mystical properties of Lake Envalore!")
+#     elif choice == 2:
+#         print_pause("Although this is a fierce mace, it is not enchanted.")
+#     else:
+#         print_pause("Please save her!")
+#         return choice
 
 def random_monster():
     monster = random.choice(["ogre", "beholder", "dragon"])
