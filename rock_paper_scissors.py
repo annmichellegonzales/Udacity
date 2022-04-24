@@ -34,7 +34,7 @@ def beats(one, two):
 
 class RandomPlayer(Player):
     def move(self):
-        return random_choice()
+        return 'scissors'
     def learn(self, my_move, their_move):
         pass
 
@@ -60,7 +60,7 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(randomPlayer.Player(), randomPlayer.Player())
+    game = Game(Player(), RandomPlayer())
     game.play_game()
 
 
