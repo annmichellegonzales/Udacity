@@ -1,4 +1,4 @@
-# import requests
+import requests
 
 API_ROOT = 'https://www.metaweather.com'
 API_LOCATION = '/api/location/search/?query='
