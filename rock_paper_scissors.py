@@ -1,3 +1,4 @@
+import random
 #!/usr/bin/env python3
 
 """This program plays a game of Rock, Paper, Scissors between two Players,
@@ -17,13 +18,13 @@ class Player:
         pass
 
 
-def random_choice():
-    choice = random.choice(['rock', 'paper', 'scissors'])
-    if choice == 'rock':
+def computer_action(moves):
+    computer_action = random.choice(moves)
+    if computer_action == 'rock':
         return 'rock'
-    if choice == 'paper':
+    if computer_action == 'paper':
         return 'paper'
-    if choice == 'scissors':
+    if computer_action == 'scissors':
         return 'scissors'
 
 
@@ -33,10 +34,10 @@ def beats(one, two):
             (one == 'paper' and two == 'rock'))
 
 class RandomPlayer(Player):
-    def move(self):
-        return 'scissors'
-    def learn(self, my_move, their_move):
-        pass
+    def __init__(self):
+        super().__init__()
+    def move(self, moves):
+        return computer_action(moves)
 
 
 class Game:
@@ -45,8 +46,8 @@ class Game:
         self.p2 = p2
 
     def play_round(self):
-        move1 = self.p1.move()
-        move2 = self.p2.move()
+        move1 = self.p1.move(moves)
+        move2 = self.p2.move(moves)
         print(f"Player 1: {move1}  Player 2: {move2}")
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
@@ -60,11 +61,9 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(Player(), RandomPlayer())
+    game = Game(RandomPlayer(), RandomPlayer())
     game.play_game()
 
 
 #     2. Create a player subclass that plays randomly
 # The starter Player class always plays 'rock'. That's not a very good strategy! Create a subclass called RandomPlayer that chooses its move at random. When you call the move method on a RandomPlayer object, it should return one of 'rock', 'paper', or 'scissors' at random.
-
-# Change the code so it plays a game between two RandomPlayer objects.
