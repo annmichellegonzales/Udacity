@@ -15,4 +15,12 @@ def computer_action(moves):
     if computer_action == 'scissors':
         print ('scissors')
 
-computer_action(moves)
+# computer_action(moves)
+
+
+def beats(one, two):
+    return ((one == 'rock' and two == 'scissors') or
+            (one == 'scissors' and two == 'paper') or
+            (one == 'paper' and two == 'rock'))
+
+beats(one, two)
