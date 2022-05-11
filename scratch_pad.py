@@ -19,6 +19,7 @@ def computer_action(moves):
 
 
 def beats(one, two):
+    one = 
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
             (one == 'paper' and two == 'rock'))
