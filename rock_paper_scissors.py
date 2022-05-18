@@ -5,7 +5,7 @@ import random
 and reports both Player's scores each round."""
 
 moves = ['rock', 'paper', 'scissors']
-
+scores = 0
 
 """The Player class is the parent class for all of the Players
 in this game"""
@@ -17,7 +17,7 @@ class Player:
 
     def learn(self, my_move, their_move):
         pass
-
+    
 def valid_input(prompt, options):
     while True:
         option = input(prompt).lower()
@@ -25,6 +25,7 @@ def valid_input(prompt, options):
             return option
         print(f'Sorry, the option "{option}" is invalid. Try again!')
 
+        
 def computer_action(moves):
     computer_action = random.choice(moves)
     if computer_action == 'rock':
@@ -34,37 +35,35 @@ def computer_action(moves):
     if computer_action == 'scissors':
         return 'scissors'
     return
-
+    
+    
 def human_action(moves):
-    print("Please enter the corresponding number to make a valid selection: ")
-    choice = valid_input("rock, paper, or scissors\n", ['rock', 'paper', 'scissors'])
+    choice = valid_input("Please choose from the following options: rock, paper, or scissors\n", ['rock', 'paper', 'scissors'])
     if choice == 'rock':
         return 'rock'
     if choice == 'paper':
         return 'paper'
-    if choice == 'scissors':
+    elif choice == 'scissors':
         return 'scissors'
     return
     
-
+    
 class RandomPlayer(Player):
     def __init__(self):
         super().__init__()
     def move(self, moves):
         return computer_action(moves)
-    def point(self, one, two):
-        return
-
-
+    
+    
 class HumanPlayer(Player):
     def __init__(self):
         super().__init__()
     def move(self, moves):
         return human_action(moves)
     def point(self, one, two):
-        return
-    
+        return beats(one, two)
 
+    
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
@@ -77,30 +76,35 @@ class Game:
         self.p2 = p2
 
     def play_round(self):
+        score1 = self.p1.score(scores)
+        score2 = self.p2.score(scores)
         move1 = self.p1.move(moves)
         move2 = self.p2.move(moves)
         print(f"Player 1: {move1}  Player 2: {move2}")
         self.p1.learn(move1, move2)
         self.p2.learn(move2, move1)
-
-        
-    def keep_score(self):
-        one = self.p1.move(moves)
-        two = self.p2.move(moves)
-        if beats(one, two):
+        if beats(move1, move2):
             print("Player 1 wins!")
-        if beats(two, one):
+            score1 = score1 + 1
+        if beats(move2, move1):
             print("Player 2 wins!")
-        elif one == two:
+            score2 = score2 +1
+        elif move1 == move2:
             print("TIE!")
-        return
+        print(f"Player 1 score: {score1}  Player 2 score: {score2}")
+
 
     def play_game(self):
         print("Game start!")
         for round in range(3):
             print(f"Round {round}:")
             self.play_round()
-            self.keep_score()
+        # if score1 > score2:
+        #     print("Player 1 wins the game!")
+        # if score2 > score1:
+        #     print("Player 2 wins the game!")
+        # elif score1 == score2:
+        #     print("Game is TIE!")
         print("Game over!")
 
 
