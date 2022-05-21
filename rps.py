@@ -1,11 +1,13 @@
 import random
+import copy
 #!/usr/bin/env python3
 
 """This program plays a game of Rock, Paper, Scissors between two Players,
 and reports both Player's scores each round."""
 
 moves = ['rock', 'paper', 'scissors']
-scores = 0
+score1 = 0
+score2 = 0
 
 """The Player class is the parent class for all of the Players
 in this game"""
@@ -46,8 +48,18 @@ def human_action(moves):
     elif choice == 'scissors':
         return 'scissors'
     return
-    
-    
+
+
+def reflect_action(moves):
+    reflect_action = their_move
+    return reflect_action
+
+
+# def cycle_action(moves):
+#     for i in moves:
+#         return i
+
+
 class RandomPlayer(Player):
     def __init__(self):
         super().__init__()
@@ -63,7 +75,33 @@ class HumanPlayer(Player):
     def point(self, one, two):
         return beats(one, two)
 
-    
+
+class ReflectPlayer(Player):
+    def __init__(self):
+        super().__init__()
+    def move(self, moves):
+        return reflect_action
+    def learn(self, my_move, their_move):
+        return their_move
+    def point(self, one, two):
+        return beats(one, two)
+
+
+class CyclePlayer(Player):
+    def __init__(self):
+        super().__init__()
+    def move(self, moves):
+        return cycle_action(moves)
+    def point(self, one, two):
+        return beats(one, two)
+
+class RockPlayer(Player):
+    def __init__(self):
+        super().__init__()
+    def move(self, moves):
+        return 'rock'
+
+
 def beats(one, two):
     return ((one == 'rock' and two == 'scissors') or
             (one == 'scissors' and two == 'paper') or
@@ -76,8 +114,7 @@ class Game:
         self.p2 = p2
 
     def play_round(self):
-        score1 = self.p1.score(scores)
-        score2 = self.p2.score(scores)
+        global score1, score2
         move1 = self.p1.move(moves)
         move2 = self.p2.move(moves)
         print(f"Player 1: {move1}  Player 2: {move2}")
@@ -85,10 +122,10 @@ class Game:
         self.p2.learn(move2, move1)
         if beats(move1, move2):
             print("Player 1 wins!")
-            score1 = score1 + 1
+            score1 += 1
         if beats(move2, move1):
             print("Player 2 wins!")
-            score2 = score2 +1
+            score2 += 1
         elif move1 == move2:
             print("TIE!")
         print(f"Player 1 score: {score1}  Player 2 score: {score2}")
@@ -99,16 +136,16 @@ class Game:
         for round in range(3):
             print(f"Round {round}:")
             self.play_round()
-        # if score1 > score2:
-        #     print("Player 1 wins the game!")
-        # if score2 > score1:
-        #     print("Player 2 wins the game!")
-        # elif score1 == score2:
-        #     print("Game is TIE!")
+        if score1 > score2:
+            print("Player 1 wins the game!")
+        if score2 > score1:
+            print("Player 2 wins the game!")
+        elif score1 == score2:
+            print("Game is TIE!")
         print("Game over!")
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), RandomPlayer())
+    game = Game(HumanPlayer(), ReflectPlayer())
     game.play_game()
 
