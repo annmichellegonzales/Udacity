@@ -8,6 +8,7 @@ and reports both Player's scores each round."""
 moves = ['rock', 'paper', 'scissors']
 score1 = 0
 score2 = 0
+cycle = 0
 
 """The Player class is the parent class for all of the Players
 in this game"""
@@ -51,13 +52,17 @@ def human_action(moves):
 
 
 def reflect_action(moves):
-    reflect_action = their_move
+    reflect_action = get(their_move)
     return reflect_action
 
 
-# def cycle_action(moves):
-#     for i in moves:
-#         return i
+def cycle_action(moves):
+    if cycle % 3 == 0:
+        return 'rock'
+    if cycle %3  == 1:
+        return 'paper'
+    if cycle % 3 == 2:
+        return "scissors"
 
 
 class RandomPlayer(Player):
@@ -114,7 +119,7 @@ class Game:
         self.p2 = p2
 
     def play_round(self):
-        global score1, score2
+        global score1, score2, cycle
         move1 = self.p1.move(moves)
         move2 = self.p2.move(moves)
         print(f"Player 1: {move1}  Player 2: {move2}")
@@ -129,11 +134,12 @@ class Game:
         elif move1 == move2:
             print("TIE!")
         print(f"Player 1 score: {score1}  Player 2 score: {score2}")
+        cycle += 1
 
 
     def play_game(self):
         print("Game start!")
-        for round in range(3):
+        for round in range(4):
             print(f"Round {round}:")
             self.play_round()
         if score1 > score2:
@@ -146,6 +152,6 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), ReflectPlayer())
+    game = Game(HumanPlayer(), CyclePlayer())
     game.play_game()
 
